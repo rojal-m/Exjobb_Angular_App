@@ -1,0 +1,8 @@
+How to import json file in Angular
+https://medium.com/codeptivesolutions/how-to-import-json-file-in-angular-a2e012948479
+
+Angular Learning
+https://www.youtube.com/watch?v=3qBXWUpoPHo&ab_channel=freeCodeCamp.org
+
+Using NgModule 
+https://www.youtube.com/watch?v=bKfbzpANUFE&ab_channel=CemEygiMedia
