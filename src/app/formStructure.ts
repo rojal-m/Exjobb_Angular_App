@@ -10,10 +10,10 @@ export class formObject {
 }
 
 export interface objClass {
-    comments: lables; 
+    comments: labels; 
     sortKey?: string;
     value: string;
-    labels: lables;
+    labels: labels;
 }
 export interface objProperty {
     min:number;
@@ -23,11 +23,12 @@ export interface objProperty {
     property:objClass;
 }
 
-export interface lables{
+export interface labels{
     default: string;
     en?: string;
     sv?: string;
     fr?: string;
     de?: string;
     se?: string;
+
 }

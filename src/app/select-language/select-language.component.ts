@@ -15,22 +15,22 @@ export class SelectLanguageComponent implements OnInit {
 
   langIndex!: number;
 
-  onLanguageChange() {
-    localStorage.setItem('langIndex', this.langIndex.toString());
-
-    this.selectedLanguage = this.languages[this.langIndex];
-    this.languageChange.emit(this.selectedLanguage.value);
-  }
-
-  ngOnInit(): void {
-    const storedindex = localStorage.getItem('langIndex');
-    if (storedindex !== null) {
-      this.langIndex = Number(storedindex);
-    } else {
-      this.langIndex = 0;
+  onLanguageChange(store: boolean) {
+    if (store){
       localStorage.setItem('langIndex', this.langIndex.toString());
     }
     this.selectedLanguage = this.languages[this.langIndex];
     this.languageChange.emit(this.selectedLanguage.value);
+  }
+
+  ngOnInit() {
+    const storedLangIndex = localStorage.getItem('langIndex');
+    if (storedLangIndex !== null) {
+      this.langIndex = Number(storedLangIndex);
+      this.onLanguageChange(false);
+    } else {
+      this.langIndex = 0;
+      this.onLanguageChange(true);
+    }
   }
 }
