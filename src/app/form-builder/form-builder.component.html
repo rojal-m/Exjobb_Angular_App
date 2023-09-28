@@ -1,9 +1,9 @@
 <div>
     <h2>Properties</h2>
-    <!-- <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-        <div>
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+        <!-- <div>
             <label for="username">Username:</label>
-            <input type="text" id="username" formControlName="username" />
+            <input type="text" id="username" formControlName="class" />
           </div>
           <div>
             <label for="email">Email:</label>
@@ -12,13 +12,10 @@
           <div>
             <label for="password">Password:</label>
             <input type="password" id="password" formControlName="password" />
-          </div>
+          </div> -->
+          <app-form-input *ngFor="let property of sortedProperties; let i = index"  [property]="property" [language]="language" (onPropertyChange)="handlePropertyChange()" />
           <div>
             <button type="submit" [disabled]="!myForm.valid">Submit</button>
           </div>
-      {sortedProperties.map((property, index) => (
-        <PropertyInput key={index} property={property} onPropertyChange={handlePropertyChange} language={language}/>
-      ))}
-      <button type="submit">Submit</button>
-    </form> -->
+    </form>
   </div>

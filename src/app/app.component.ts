@@ -16,7 +16,7 @@ import lang from '../data/lang.json';
 export class AppComponent implements OnInit  {
   title = 'angular_app';
   
-  selectedObject!: formObject;
+  selectedObject?: formObject;
   selectedLanguage!: string;
   
   // Parse JSON data into an instance of the class

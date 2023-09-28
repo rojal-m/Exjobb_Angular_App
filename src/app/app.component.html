@@ -1,8 +1,6 @@
 <div>
   <h1>Trace4Value</h1>
-  <app-select-object [objDatas]="objectData" [language]="selectedLanguage" (objectSelect)="selectObject($event)" />
   <app-select-language [languages]="formLang" (languageChange)="selectLanguage($event)" />
-  <!-- {selectedWindow && (
-    <PropertyForm object={selectedWindow} language={selectedLanguage}/>
-  )} -->
+  <app-select-object [objDatas]="objectData" [language]="selectedLanguage" (objectSelect)="selectObject($event)" />
+  <app-form-builder *ngIf="selectedObject" [object]="selectedObject" [language]="selectedLanguage"/>
 </div>

@@ -6,3 +6,6 @@ https://www.youtube.com/watch?v=3qBXWUpoPHo&ab_channel=freeCodeCamp.org
 
 Using NgModule 
 https://www.youtube.com/watch?v=bKfbzpANUFE&ab_channel=CemEygiMedia
+
+cant bind to from group error(Adding reactivefromsmodule)
+https://www.telerik.com/blogs/fixing-cant-bind-to-formgroup-since-not-known-property-of-form-error-angular

@@ -4,7 +4,7 @@
             "comments": {"default": "http://w3id.org/CEON/ontology/construction/window/RecyclableWindowWAsbestos"},
             "sortKey": "http://w3id.org/CEON/ontology/construction/window/Window -> http://w3id.org/CEON/ontology/construction/window/RecyclableWindow -> http://w3id.org/CEON/ontology/construction/window/RecyclableWindowWHazardousSubstance -> http://w3id.org/CEON/ontology/construction/window/RecyclableWindowWAsbestos",
             "value": "http://w3id.org/CEON/ontology/construction/window/RecyclableWindowWAsbestos",
-            "labels": {"default": "RecyclableWindowWAsbestos"}
+            "labels": {"default": "RecyclableWindowWAsbestos","en": "Recyclable Window With Asbestos", "sv":"Återvinningsbart fönster med asbest", "fr":"Fenêtre recyclable avec amiante", "de":"Recycelbares Fenster mit Asbest"}
         },
         "properties": [
             {

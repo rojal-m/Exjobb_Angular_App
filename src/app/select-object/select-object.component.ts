@@ -1,12 +1,14 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { formObject, labels } from '../formStructure';
 
 @Component({
   selector: 'app-select-object',
   templateUrl: './select-object.component.html',
-  styleUrls: ['./select-object.component.css']
+  styleUrls: ['./select-object.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SelectObjectComponent implements OnInit {
+export class SelectObjectComponent implements OnInit, OnChanges {
+  
   @Input() objDatas!: formObject[];
   @Input() language!: string;
   lang = this.language as keyof labels;
@@ -17,14 +19,20 @@ export class SelectObjectComponent implements OnInit {
 
   objIndex!: number;
 
-  
+
   onObjectChange(store: boolean){
     if (store){
       localStorage.setItem('objIndex', this.objIndex.toString());
     }
     this.objectSelect.emit(this.objIndex);
   }
-  
+  ngOnChanges(changes: SimpleChanges): void {
+    
+    if(changes['language']) {
+      this.language = this.language;
+      this.lang = changes['language'].currentValue as keyof labels;
+    }
+  }
   ngOnInit(): void {
     const storedObjIndex = localStorage.getItem('objIndex');
     if (storedObjIndex !== null) {
