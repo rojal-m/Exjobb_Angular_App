@@ -1,7 +1,7 @@
 <div>
-    <h2>Properties</h2>
-    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-        <!-- <div>
+  <h2>Properties</h2>
+  <form [formGroup]="objForm" (ngSubmit)="onSubmit()">
+    <!-- <div>
             <label for="username">Username:</label>
             <input type="text" id="username" formControlName="class" />
           </div>
@@ -13,9 +13,15 @@
             <label for="password">Password:</label>
             <input type="password" id="password" formControlName="password" />
           </div> -->
-          <app-form-input *ngFor="let property of sortedProperties; let i = index"  [property]="property" [language]="language" (onPropertyChange)="handlePropertyChange()" />
-          <div>
-            <button type="submit" [disabled]="!myForm.valid">Submit</button>
-          </div>
-    </form>
-  </div>
+    <app-form-input
+      *ngFor="let property of sortedProperties; let i = index"
+      [formGroup]="objFormProp.at(i)"
+      [property]="property"
+      [language]="language"
+      (propertyChange)="handlePropertyChange()"
+    />
+    <div>
+      <button type="submit" [disabled]="!objForm.valid">Submit</button>
+    </div>
+  </form>
+</div>

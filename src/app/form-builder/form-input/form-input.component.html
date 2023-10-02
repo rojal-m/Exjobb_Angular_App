@@ -1,30 +1,30 @@
-<div>
-    <label>{{ getSelectedLang(property.property.labels) }}</label>
+<div class="mb-3">
+    <label class="form-label" for="{{type}}">{{ getSelectedLang(property.property.labels) }}</label>
     <span *ngIf="isRequired" style="color: red">*</span>
     <ng-container [ngSwitch]="property.datatype">
-        <div *ngSwitchCase="'http://www.w3.org/2001/XMLSchema#boolean'">
-            <input type="radio" name="{{ propertyName }}" value="yes" (change)="handleInputChange('yes')" [required]="isRequired"/>
-            <label>Yes</label>
-            <input type="radio" name="{{ propertyName }}" value="no" (change)="handleInputChange('no')" [required]="isRequired"/>
-            <label>No</label>
-            <input type="radio" name="{{ propertyName }}" value="dontknow" (change)="handleInputChange('dontknow')" *ngIf="!isRequired"/>
-            <label *ngIf="!isRequired">Dont Know</label>
+        <div [formGroup]="formGroup" *ngSwitchCase="'http://www.w3.org/2001/XMLSchema#boolean'">
+            <input type="radio" class="form-check-input"  [id]="type" value="yes" (change)="handleInputChange('yes')" [required]="isRequired" formControlName="value"/>
+            <label class="form-label" for="{{type}}">Yes</label>
+            <input type="radio" class="form-check-input"  [id]="type" value="no" (change)="handleInputChange('no')" [required]="isRequired" formControlName="value"/>
+            <label class="form-label" for="{{type}}">No</label>
+            <input type="radio" class="form-check-input"  [id]="type" value="dontknow" (change)="handleInputChange('dontknow')" *ngIf="!isRequired" formControlName="value"/>
+            <label class="form-label" for="{{type}}" *ngIf="!isRequired">Dont Know</label>
         </div>
-        <div *ngSwitchCase="'http://www.w3.org/2001/XMLSchema#string'">
-            <input type="text" name="{{ propertyName }}" (input)="handleInputChange($event.target)" [required]="isRequired"/>
+        <div [formGroup]="formGroup" *ngSwitchCase="'http://www.w3.org/2001/XMLSchema#string'">
+            <input class="form-control" type="text" [id]="type" (input)="handleInputChange($event.target)" [required]="isRequired" formControlName="value"/>
         </div>
-        <div *ngSwitchCase="'http://www.w3.org/2001/XMLSchema#gMonthYear'">
-            <input type="month" name="{{ propertyName }}" (input)="handleInputChange($event.target)" [required]="isRequired"/>
+        <div [formGroup]="formGroup" *ngSwitchCase="'http://www.w3.org/2001/XMLSchema#gMonthYear'">
+            <input type="month" [id]="type" (input)="handleInputChange($event.target)" [required]="isRequired" formControlName="value"/>
         </div>
-        <div *ngSwitchDefault>
-            <select *ngIf="property.values; else noCrit"  name="{{ propertyName }}" (change)="handleInputChange($event.target)" [multiple]="!(property.max === 1)" [required]="isRequired">
+        <div [formGroup]="formGroup" *ngSwitchDefault>
+            <select class="form-select" *ngIf="property.values; else noCrit"  [id]="type" (change)="handleInputChange($event.target)" [multiple]="!(property.max === 1)" [required]="isRequired" formControlName="value">
                 <option *ngIf="property.max === 1" value="">Choose an option</option>
                 <option *ngFor="let value of property.values" [value]="value.value">
                     {{ value.labels[lang] || value.labels.default }}
                 </option>
             </select>
-            <ng-template #noCrit>
-                <input type="text" name={propertyName} onChange={handleInputChange} />
+            <ng-template #noCrit >
+                <input class="form-control" *ngIf="!isRequired || !property.max || !property.datatype || !property.values" type="text" [id]="type" (change)="handleInputChange($event.target)" formControlName="value"/>
             </ng-template>
         </div>
     </ng-container>

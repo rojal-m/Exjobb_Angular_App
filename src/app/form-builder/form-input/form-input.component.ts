@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { FormGroup, FormArray } from '@angular/forms';
 import { labels, objProperty } from 'src/app/formStructure';
 
 @Component({
@@ -10,12 +11,14 @@ export class FormInputComponent implements OnInit, OnChanges {
   
   @Input() property!: objProperty;
   @Input() language!: string;
+  @Input() formGroup!: FormGroup;
   
   @Output() propertyChange = new EventEmitter<any>();
   
   lang!: keyof labels;
   isRequired!: boolean;
   propertyName!: string;
+  type!: keyof FormGroup;
 
   handleInputChange(value: any): void {
     // Emit the property change event with the updated value
@@ -38,5 +41,7 @@ export class FormInputComponent implements OnInit, OnChanges {
     this.lang = this.language as keyof labels;
     this.isRequired = this.property.min != 0;
     this.propertyName = this.property.property.value;
+    this.type = this.propertyName as keyof FormGroup;
+    console.log(this.formGroup);
   }
 }

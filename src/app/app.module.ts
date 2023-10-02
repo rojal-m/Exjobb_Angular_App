@@ -7,6 +7,7 @@ import { SelectLanguageComponent } from './select-language/select-language.compo
 import { FormBuilderComponent } from './form-builder/form-builder.component';
 import { SelectObjectComponent } from './select-object/select-object.component';
 import { FormInputComponent } from './form-builder/form-input/form-input.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { FormInputComponent } from './form-builder/form-input/form-input.compone
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
