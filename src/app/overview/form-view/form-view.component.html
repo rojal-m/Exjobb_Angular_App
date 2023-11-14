@@ -1,0 +1,24 @@
+<div class="overlay">
+  <div class=" container view-form-container">
+    <div class="row justify-content-between"> 
+        <div class="col-7">
+            <h3>{{ form.title }} - {{ getClassLabels(form.class) }}</h3>
+            <p>Created Date: {{ form.createdDate | date: "short" }}</p>
+        </div>
+        <div class="col-auto row justify-content-between  align-items-start">
+            <button class="btn btn-outline-secondary" (click)="closeView()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                  <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+    <h5>Properties:</h5>
+    <div class="row box justify-content-start align-items-center mb-2 ms-5 me-5" *ngFor="let property of form.properties">
+      <p class="col-4 m-2">{{ getPropertyDisplayLabel(property.name) }}: </p>
+      <p class="col-4 m-2">{{ getPropertyDisplayValue(property) }}</p>
+    </div>
+    <button class="align-center btn btn-primary ms-5" (click)="download()">Download</button>
+  </div>
+  <div class="overlay" (click)="closeView()"></div>
+</div>
