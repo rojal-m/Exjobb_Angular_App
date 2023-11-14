@@ -1,0 +1,90 @@
+<div class="m-3">
+    <ng-container [ngSwitch]="property.datatype">
+        <fieldset class="row" [formGroup]="formGroup" *ngSwitchCase="'http://www.w3.org/2001/XMLSchema#boolean'">
+            <legend class="col-form-label col-sm-3" [title]="getSelectedLang(property.property.comments)">{{ getSelectedLang(property.property.labels) }} <span *ngIf="isRequired" style="color: red">*</span></legend>
+            <div class="col-sm-9">
+                <div class="form-check">
+                  <input type="radio" 
+                  class="form-check-input" 
+                  [ngClass]="formGroup.controls['value'].hasError('required') ? 'is-invalid': 'is-valid'" 
+                  [id]="propertyName+1" 
+                  value="yes" 
+                  [required]="isRequired" 
+                  formControlName="value"/>
+                  <label class="form-check-label" [for]="propertyName+1"> Yes </label>
+                </div>
+                <div class="form-check">
+                  <input type="radio" 
+                  class="form-check-input" 
+                  [ngClass]="formGroup.controls['value'].hasError('required') ? 'is-invalid': 'is-valid'" 
+                  [id]="propertyName+2" 
+                  value="no" 
+                  [required]="isRequired" 
+                  formControlName="value"/>
+                  <label class="form-check-label" [for]="propertyName+2"> No </label>
+                  <div class="invalid-feedback">
+                    The field is required.
+                  </div>
+                </div>
+                <div class="form-check disabled" *ngIf="!isRequired">
+                  <input type="radio" 
+                  class="form-check-input" 
+                  [ngClass]="formGroup.controls['value'].hasError('required') ? 'is-invalid': 'is-valid'"
+                  [id]="propertyName+3" 
+                  value="dontknow" 
+                  formControlName="value" />
+                  <label class="form-check-label" [for]="propertyName+3"> Don't Know </label>
+                </div>
+            </div>
+        </fieldset>
+        <div class="row" [formGroup]="formGroup" *ngSwitchCase="'http://www.w3.org/2001/XMLSchema#string'">
+            <label class="col-sm-3 col-form-label" [for]="propertyName" [title]="getSelectedLang(property.property.comments)">{{ getSelectedLang(property.property.labels) }} <span *ngIf="isRequired" style="color: red">*</span></label>
+            <div class="col-sm-9">
+                <input class="form-control" 
+                [ngClass]="formGroup.controls['value'].hasError('required') ? 'is-invalid': 'is-valid'"
+                type="text" [id]="propertyName" 
+                formControlName="value" 
+                [required]="isRequired"/>
+                <div class="invalid-feedback">
+                    The field is required.
+                </div>
+            </div>
+        </div>
+        <div class="row" [formGroup]="formGroup" *ngSwitchCase="'http://www.w3.org/2001/XMLSchema#gMonthYear'">
+            <label class="col-sm-3 col-form-label" [for]="propertyName" [title]="getSelectedLang(property.property.comments)">{{ getSelectedLang(property.property.labels) }} <span *ngIf="isRequired" style="color: red">*</span></label>
+            <div class="col-sm-9">
+                <input class="form-control" 
+                [ngClass]="formGroup.controls['value'].hasError('required') ? 'is-invalid': 'is-valid'"
+                type="month" 
+                [id]="propertyName" 
+                [required]="isRequired" 
+                formControlName="value"/>
+                <div class="invalid-feedback">
+                    The field is required.
+                </div>
+            </div>
+        </div>
+        <div class="row" [formGroup]="formGroup" *ngSwitchDefault>
+            <label class="col-sm-3 col-form-label" [for]="propertyName" [title]="getSelectedLang(property.property.comments)">{{ getSelectedLang(property.property.labels) }} <span *ngIf="isRequired" style="color: red">*</span></label>
+            <div class="col-sm-9">
+                <select [ngClass]="[!(property.max === 1) ? 'form-select child-select multiple' : 'form-select child-select', formGroup.controls['value'].hasError('required') ? 'is-invalid': 'is-valid']"
+                *ngIf="property.values; else noCrit"  
+                [id]="propertyName" 
+                [multiple]="!(property.max === 1)" 
+                [required]="isRequired" 
+                formControlName="value">
+                    <option *ngIf="property.max === 1">Choose an option</option>
+                    <option *ngFor="let value of property.values" [value]="value.value" [title]="getSelectedLang(value.comments)">
+                        {{ value.labels[lang] || value.labels.default }}
+                    </option>
+                </select>
+                <div class="invalid-feedback">
+                    The field is required.
+                </div>
+                <ng-template #noCrit >
+                    <input class="form-control" [ngClass]="formGroup.controls['value'].hasError('required') ? 'is-invalid': 'is-valid'" *ngIf="!isRequired || !property.max || !property.datatype || !property.values" type="text" [id]="propertyName" formControlName="value"/>
+                </ng-template>
+            </div>
+        </div>
+    </ng-container>
+</div>

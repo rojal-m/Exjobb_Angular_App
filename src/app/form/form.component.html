@@ -1,0 +1,6 @@
+<h1>Trace4Value</h1>
+<div class="row row-reverse">
+  <app-select-language [ngClass]="'col-4'" [languages]="formLang" (languageChange)="selectLanguage($event)" />
+  <app-select-object [ngClass]="'col-8'" [objDatas]="objectData" [objClass]="currentForm?.class" [language]="selectedLanguage" (objectSelect)="selectObject($event)" />
+</div>
+<app-form-builder *ngIf="selectedObject" [currentForm]="currentForm" [object]="selectedObject" [language]="selectedLanguage" [editing]="editing"/>

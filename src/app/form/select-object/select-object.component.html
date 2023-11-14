@@ -1,0 +1,13 @@
+<div class="row g-3 align-items-center">
+  <div class="col-auto">
+    <label for="obj-select" class="col-form-label">Form:</label>
+  </div>
+  <div class="col-7">
+    <select class="form-select" id="obj-select" [(ngModel)]="objIndex" [value]="objIndex" (change)="onObjectChange()">
+      <option *ngFor="let obj of objDatas; let i = index" [value]="i" [title]="obj.class.comments[lang] ? obj.class.comments[lang] : obj.class.comments.default">
+          {{indent(obj.class.sortKey!)}}
+          {{ obj.class.labels[lang] ? obj.class.labels[lang] : obj.class.labels.default }}
+      </option>
+    </select>
+  </div>
+</div>

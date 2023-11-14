@@ -1,0 +1,10 @@
+<div class="row g-3 align-items-center">
+    <div class="col-auto">
+        <label for="lang-select" class="col-form-label">Language:</label>
+    </div>
+    <div class="col-auto">
+        <select class="form-select" id="lang-select" [(ngModel)]="langIndex" (change)="onLanguageChange(true)" [value]="langIndex">
+            <option *ngFor="let language of languages; let i = index" [value]="i">{{ language.name }}</option>
+        </select>
+    </div>
+</div>

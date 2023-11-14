@@ -1,0 +1,30 @@
+<div class="container-md mt-5 mb-5 p-0">
+  <form class="needs-validation" [formGroup]="objForm" (ngSubmit)="onSubmit($event)" #myForm>
+    <div class="m-3">
+      <div class="row" [formGroup]="objForm">
+        <label class="col-sm-3 col-form-label bold" for="title" title="Select title for the Form"> Title <span style="color: red">*</span></label>
+        <div class="col-sm-9">
+            <input class="form-control" 
+            type="text" id="title" 
+            formControlName="title" 
+            [ngClass]="objForm.controls['title'].hasError('required') ? 'is-invalid': 'is-valid'"
+            required/>
+            <div class="invalid-feedback">
+                The field is required.
+            </div>
+        </div>
+      </div>
+    </div>
+    <app-form-input
+      *ngFor="let property of sortedProperties; let i = index"
+      [formGroup]="objFormProp.at(i)"
+      [property]="property"
+      [language]="language"
+    />
+    <div class="row justify-content-center">
+      <button *ngIf="objForm.valid" type="submit" class="btn-success btn col-sm-8 m-3 mt-0" >Saving Complete Form</button>
+      <button *ngIf="!objForm.valid" type="submit" class="btn-primary btn col-sm-8 m-3 mt-0" >Saving Incomplete Form</button>
+      <button routerLink="/overview" class="btn-secondary btn col-sm-3 m-3 mt-0" >Back</button>
+    </div>
+  </form>
+</div>
