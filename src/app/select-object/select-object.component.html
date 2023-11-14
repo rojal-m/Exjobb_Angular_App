@@ -1,8 +1,0 @@
-<div>
-  <h2>Form:</h2>
-  <select [(ngModel)]="objIndex" (change)="onObjectChange(true)" [value]="objIndex">
-    <option *ngFor="let obj of objDatas; let i = index" [value]="i">
-        {{ obj.class.labels[lang] ? obj.class.labels[lang] : obj.class.labels.default }}
-    </option>
-  </select>
-</div>

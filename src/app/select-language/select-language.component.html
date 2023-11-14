@@ -1,6 +1,0 @@
-<div>
-    <label>Language:</label>
-    <select [(ngModel)]="langIndex" (change)="onLanguageChange(true)" [value]="langIndex">
-        <option *ngFor="let language of languages; let i = index" [value]="i">{{ language.name }}</option>
-    </select>
-</div>
