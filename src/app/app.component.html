@@ -1,6 +1,3 @@
-<div>
-  <h1>Trace4Value</h1>
-  <app-select-language [languages]="formLang" (languageChange)="selectLanguage($event)" />
-  <app-select-object [objDatas]="objectData" [language]="selectedLanguage" (objectSelect)="selectObject($event)" />
-  <app-form-builder *ngIf="selectedObject" [object]="selectedObject" [language]="selectedLanguage"/>
+<div class="container-md">
+  <router-outlet></router-outlet>
 </div>
