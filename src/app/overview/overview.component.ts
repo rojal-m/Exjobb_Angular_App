@@ -71,9 +71,16 @@ export class OverviewComponent implements OnInit {
   
   deleteForm(form: formOverview) {
     const formId = form._id;
+    if (form.isComplete) {
+      const indexToRemove = this.completedForms.findIndex(item => item._id === form._id);
+			this.completedForms.splice(indexToRemove, 1);
+		} else {
+      const indexToRemove = this.incompletedForms.findIndex(item => item._id === form._id);
+			this.incompletedForms.splice(indexToRemove, 1);
+		}
     this.userService.removeForm(formId).subscribe((data) => {
       console.log(data);
-      this.getForms();
+      //this.getForms();
     });
   }
   editForm(form: formOverview) {

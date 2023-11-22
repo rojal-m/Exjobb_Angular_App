@@ -66,36 +66,36 @@ export class UserService {
 
   getClassLabels(classValue: string): string {
     let formobj: formObject[] = data;
-    const windowData = formobj.find(item => item.class.value === classValue);
-    if (windowData && windowData.class.labels) {
+    const selectedObject = formobj.find(item => item.class.value === classValue);
+    if (selectedObject && selectedObject.class.labels) {
       const langIndex  = +localStorage.getItem('langIndex')!  || 0;
       const selectedLang = lang.at(langIndex)?.value as keyof labels;
-      return windowData.class.labels[selectedLang] ?? windowData.class.labels.default;
+      return selectedObject.class.labels[selectedLang] ?? selectedObject.class.labels.default;
     }
     return classValue;
   }
 
   getPropertyLabels(classValue: string, propValue: string): string {
     let formobj: formObject[] = data;
-    const windowData = formobj.find(item => item.class.value === classValue);
-    const propData = windowData?.properties.find(item => item.property.value === propValue);
-    if (propData && propData.property.labels) {
+    const selectedObject = formobj.find(item => item.class.value === classValue);
+    const objPropData = selectedObject?.properties.find(item => item.property.value === propValue);
+    if (objPropData && objPropData.property.labels) {
       const langIndex  = +localStorage.getItem('langIndex')!  || 0;
       const selectedLang = lang.at(langIndex)?.value as keyof labels;
-      return propData.property.labels[selectedLang] ?? propData.property.labels.default;
+      return objPropData.property.labels[selectedLang] ?? objPropData.property.labels.default;
     }
     return propValue;
   }
-  getPropertyValueLabels(classValue: string, propLabel: string , propValue:string): string {
+  getPropertyValueLabels(classValue: string, propValue: string , propValuesValue:string): string {
     let formobj: formObject[] = data;
-    const windowData = formobj.find(item => item.class.value === classValue);
-    const propData = windowData?.properties.find(item => item.property.value === propLabel);
-    const propValueData = propData?.values?.find(item => item.value === propValue);
-    if (propValueData && propValueData.labels) {
+    const selectedObject = formobj.find(item => item.class.value === classValue);
+    const objPropData = selectedObject?.properties.find(item => item.property.value === propValue);
+    const objPropValueData = objPropData?.values?.find(item => item.value === propValuesValue);
+    if (objPropValueData && objPropValueData.labels) {
       const langIndex  = +localStorage.getItem('langIndex')!  || 0;
       const selectedLang = lang.at(langIndex)?.value as keyof labels;
-      return propValueData.labels[selectedLang] ?? propValueData.labels.default;
+      return objPropValueData.labels[selectedLang] ?? objPropValueData.labels.default;
     }
-    return propValue;
+    return propValuesValue;
   }
 }
