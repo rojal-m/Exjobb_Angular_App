@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges,  ViewChild, ElementRef  } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { formObject, objProperty, labels } from '../../../model/formStructure';
-import { formOverview, propertyOverview } from '../../../model/formOverview';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { formObject, objProperty } from '../../../model/formStructure';
+import { formOverview } from '../../../model/formOverview';
 import { UserService } from '../../user.service';
 import { Router } from '@angular/router';
 
@@ -18,8 +18,6 @@ export class FormBuilderComponent implements OnInit, OnChanges {
   @Input() object!: formObject;
   @Input() language!: string;
   @Input() editing!: Boolean;
-  
-  @Output() objectSelect = new EventEmitter<number>();
 
   sortedProperties!: objProperty[];
 

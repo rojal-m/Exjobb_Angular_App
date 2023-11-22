@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { formObject } from '../../model/formStructure';
-import { Language } from '../../model/languageStructure';
 import { formOverview } from '../../model/formOverview';
-// PATH TO YOUR JSON FILE
-import data from '../../data/form.json';
-import lang from '../../data/lang.json';
+
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../user.service';
 
@@ -25,9 +22,6 @@ export class FormComponent implements OnInit  {
   editing: Boolean = false;
   
   // Parse JSON data into an instance of the class
-  objectData: formObject[] = data;
-  formLang: Language[] = lang;
-
 
   constructor(private route: ActivatedRoute, private userService: UserService) {}
   
@@ -39,7 +33,6 @@ export class FormComponent implements OnInit  {
         this.getOneForm(params['id']);
       }
     });
-    this.sortObjData();
   }
   getOneForm(formId: string) {
     this.userService.getOneForm(formId).subscribe((data) => {
@@ -51,13 +44,7 @@ export class FormComponent implements OnInit  {
     this.selectedLanguage = language;
   }
 
-  selectObject(objectIndex: number) {
-    this.selectedObject = this.objectData[objectIndex];
-  }
-
-  sortObjData(){
-    this.objectData = this.objectData.sort(function (a, b) {
-      return a.class.sortKey!.localeCompare(b.class.sortKey!);
-    });
+  selectObject(object: formObject) {
+    this.selectedObject = object;
   }
 }

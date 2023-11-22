@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { Language } from '../../../model/languageStructure';
+import lang from '../../../data/lang.json';
 
 @Component({
   selector: 'app-select-language',
@@ -7,7 +8,8 @@ import { Language } from '../../../model/languageStructure';
   styleUrls: ['./select-language.component.css'],
 })
 export class SelectLanguageComponent implements OnInit {
-  @Input() languages!: Language[];
+  
+  languages: Language[] = lang;
 
   @Output() languageChange = new EventEmitter<string>();
 

@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { formObject, labels } from '../../../model/formStructure';
+import data from '../../../data/form.json';
 
 @Component({
   selector: 'app-select-object',
@@ -9,16 +10,17 @@ import { formObject, labels } from '../../../model/formStructure';
 })
 export class SelectObjectComponent implements OnInit, OnChanges {
   
-  @Input() objDatas!: formObject[];
+  objDatas: formObject[] = data;  
   @Input() objClass?: string;
   @Input() language!: string;
   lang = this.language as keyof labels;
   objIndex!: number;
 
-  @Output() objectSelect = new EventEmitter<number>();
+  @Output() objectSelect = new EventEmitter<formObject>();
   
 
   ngOnInit(): void {
+    this.sortObjData();
     if(this.objClass){
       const index = this.objDatas.findIndex(item => item.class.value === this.objClass);
       this.objIndex = index;
@@ -30,7 +32,7 @@ export class SelectObjectComponent implements OnInit, OnChanges {
   }
 
   onObjectChange(){
-    this.objectSelect.emit(this.objIndex);
+    this.objectSelect.emit(this.objDatas[this.objIndex]);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -57,5 +59,11 @@ export class SelectObjectComponent implements OnInit, OnChanges {
     const val = String.fromCharCode(8194).repeat(arrowCount);
 
     return val;
+  }
+  
+  sortObjData(){
+    this.objDatas = this.objDatas.sort(function (a, b) {
+      return a.class.sortKey!.localeCompare(b.class.sortKey!);
+    });
   }
 }
